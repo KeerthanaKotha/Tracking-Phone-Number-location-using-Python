@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Number Tracker</title>
+</head>
+<body>
+    <h1>Phone Number Tracker</h1>
+    <form id="track-form" method="post">
+        <label for="numbers">Enter phone numbers (comma-separated):</label>
+        <input type="text" id="numbers" name="numbers" required>
+        <button type="submit">Track</button>
+    </form>
+    <div id="tracking-info"></div>
+    <iframe id="map" src="" width="100%" height="500px" style="display:none;"></iframe>
+
+    <script>
+        document.getElementById('track-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            const response = await fetch('/', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            document.getElementById('tracking-info').innerHTML = result.details;
+            document.getElementById('map').src = result.map_url;
+            document.getElementById('map').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

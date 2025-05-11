@@ -1,0 +1,6 @@
+
+Flask==2.0.2
+phonenumbers==8.12.38
+folium==0.12.1
+opencage==2.0.0
+Werkzeug==2.0.2
